@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.starstel.telcopro",
+      "nativeLanguage": "fr"
+    },
+    "jhipsterVersion": "5.7.2",
+    "applicationType": "monolith",
+    "baseName": "telcopro",
+    "packageName": "com.starstel.telcopro",
+    "packageFolder": "com/starstel/telcopro",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NWJmNTBkYWFhOGJhMzZhOTY4MTc3YmE4NjE2MzVkNzY4NTgzNDVlMTI4N2I5OGQ2OTU0NWZmM2EwMGQ1N2UyZTI0ZmZkYTJmN2JkZWNjOTZlMmRkYmU0ZDI4Y2UzMzJlODY0ZDcwYWVlOWZjYzdjZTEzYzg2ODcwYjkzNmVjNmY=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "fr",
+    "languages": [
+      "fr",
+      "en"
+    ]
+  }
+}
