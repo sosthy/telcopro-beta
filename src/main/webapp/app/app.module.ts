@@ -6,6 +6,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { NgJhipsterModule } from 'ng-jhipster';
+import { SidebarModule } from 'ng-sidebar';
 
 import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
 import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
@@ -20,11 +21,17 @@ import { TelcoproEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
+import { MenuComponent } from './layouts/menu/menu.component';
+import { HeaderComponent } from './layouts/header/header.component';
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
+import { AccordionAnchorDirective, AccordionLinkDirective, AccordionDirective } from './layouts/menu-accordion';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
         BrowserModule,
         TelcoproAppRoutingModule,
+        SidebarModule.forRoot(),
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         NgJhipsterModule.forRoot({
             // set below to true to make alerts look like toast
@@ -40,7 +47,20 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         // jhipster-needle-angular-add-module JHipster will add new module here
         TelcoproEntityModule
     ],
-    declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
+    declarations: [
+        JhiMainComponent,
+        NavbarComponent,
+        ErrorComponent,
+        PageRibbonComponent,
+        ActiveMenuDirective,
+        MenuComponent,
+        HeaderComponent,
+        SidebarComponent,
+        FooterComponent,
+        AccordionAnchorDirective,
+        AccordionLinkDirective,
+        AccordionDirective
+    ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,

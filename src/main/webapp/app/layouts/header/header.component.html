@@ -1,0 +1,140 @@
+<nav class="navbar custom-navbar bg-faded main-header" [ngSwitch]="isAuthenticated()">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a href="javascript:;" class="nav-link" (click)="toggleSidebar.emit()">
+        <i class="hamburger-icon v2">
+          <span></span>
+        </i>
+      </a>
+    </li>
+  </ul>
+  <!-- <span class="navbar-heading hidden-xs-down">{{heading}}</span> -->
+  <span class="mr-auto"></span>
+  <ul class="navbar-nav">
+    <li ngbDropdown class="nav-item dropdown pointer" *ngIf="languages && languages.length > 1">
+        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown">
+            <span>
+                <fa-icon icon="flag"></fa-icon>
+                <span jhiTranslate="global.menu.language">Language</span>
+            </span>
+        </a>
+        <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="languagesnavBarDropdown">
+            <li *ngFor="let language of languages">
+                <a class="dropdown-item" [jhiActiveMenu]="language" href="javascript:void(0);" (click)="changeLanguage(language);collapseNavbar();">{{language | findLanguageFromKey}}</a>
+            </li>
+        </ul>
+    </li>
+    <li ngbDropdown class="nav-item" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
+        <span *ngIf="!getImageUrl()">
+          <fa-icon icon="user"></fa-icon>
+          <span jhiTranslate="global.menu.account.main">
+            Account
+          </span>
+        </span>
+        <span *ngIf="getImageUrl()">
+            <img [src]="getImageUrl()" class="profile-image rounded-circle" alt="Avatar">
+        </span>
+      </a>
+      <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="account-menu">
+          <li *ngSwitchCase="true">
+              <a class="dropdown-item" routerLink="settings" routerLinkActive="active" (click)="collapseNavbar()">
+                  <fa-icon icon="wrench" fixedWidth="true"></fa-icon>
+                  <span jhiTranslate="global.menu.account.settings">Settings</span>
+              </a>
+          </li>
+          <li *ngSwitchCase="true">
+              <a class="dropdown-item" routerLink="password" routerLinkActive="active" (click)="collapseNavbar()">
+                  <fa-icon icon="clock" fixedWidth="true"></fa-icon>
+                  <span jhiTranslate="global.menu.account.password">Password</span>
+              </a>
+          </li>
+          <li *ngSwitchCase="true">
+              <a class="dropdown-item" (click)="logout()" id="logout">
+                  <fa-icon icon="sign-out-alt" fixedWidth="true"></fa-icon>
+                  <span jhiTranslate="global.menu.account.logout">Sign out</span>
+              </a>
+          </li>
+          <li *ngSwitchCase="false">
+              <a class="dropdown-item" (click)="login()" id="login">
+                  <fa-icon icon="sign-in-alt" fixedWidth="true"></fa-icon>
+                  <span jhiTranslate="global.menu.account.login">Sign in</span>
+              </a>
+          </li>
+          <li *ngSwitchCase="false">
+              <a class="dropdown-item" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()">
+                  <fa-icon icon="user-plus" fixedWidth="true"></fa-icon>
+                  <span jhiTranslate="global.menu.account.register">Register</span>
+              </a>
+          </li>
+      </ul>
+    </li>
+    <!-- <li class="nav-item" ngbDropdown placement="bottom-right">
+      <a href="javascript:;" class="nav-link" ngbDropdownToggle>
+        <img src="../../../assets/images/avatar.jpg" class="navbar-avatar rounded-circle" alt="user" title="user">
+      </a>
+      <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" href="javascript:;">
+          <i class="icon icon-basic-settings mr-3"></i>
+          <span>Settings</span>
+        </a>
+        <a class="dropdown-item" href="javascript:;">
+          <i class="icon icon-basic-postcard mr-3"></i>
+          <span>Profile</span>
+        </a>
+        <a class="dropdown-item" href="javascript:;">
+          <i class="icon icon-basic-message-multiple mr-3"></i>
+          <span>Notifications</span>
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="javascript:;">
+          <i class="icon icon-arrows-switch-vertical mr-3"></i>
+          <span>Signout</span>
+        </a>
+      </div>
+    </li>
+    <li class="nav-item" ngbDropdown placement="bottom-right">
+      <a href="javascript:;" class="nav-link" ngbDropdownToggle>
+        <fa-icon icon="envelope"></fa-icon>
+        <span class="badge badge-danger">4</span>
+      </a>
+      <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right notifications">
+        <div class="notifications-wrapper">
+          <a href="javascript:;" class="dropdown-item">
+            <span class="badge badge-warning">NEW</span>
+            &nbsp;Sean launched a new application
+            <span class="time">2 seconds ago</span>
+          </a>
+          <a href="javascript:;" class="dropdown-item">
+            Removed calendar from app list
+            <span class="time">4 hours ago</span>
+          </a>
+          <a href="javascript:;" class="dropdown-item">
+            Jack Hunt has joined mailing list
+            <span class="time">9 days ago</span>
+          </a>
+          <a href="javascript:;" class="dropdown-item">
+            <span class="text-muted">Conan Johns created a new list</span>
+            <span class="time">9 days ago</span>
+          </a>
+        </div>
+        <div class="notification-footer">Notifications</div>
+      </div>
+    </li> -->
+    <li class="nav-item">
+      <a href="javascript:;" class="nav-link" (click)="toggleFullscreen.emit()">
+        <fa-icon icon="arrows-alt"></fa-icon>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <span class="nav-divider"></span>
+    </li>
+    <li class="nav-item">
+      <a href="javascript:;" class="nav-link" (click)="openSearch.emit()">
+        <fa-icon icon="search"></fa-icon>
+      </a>
+    </li>
+
+  </ul>
+</nav>
